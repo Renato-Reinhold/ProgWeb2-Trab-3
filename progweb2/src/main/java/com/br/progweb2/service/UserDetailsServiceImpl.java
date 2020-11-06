@@ -1,12 +1,8 @@
-package org.o7planning.sbsecurity.service;
+package com.br.progweb2.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.o7planning.sbsecurity.dao.AppUserDAO;
-import org.o7planning.sbsecurity.entity.AppUser;
-import org.o7planning.sbsecurity.dao.AppRoleDAO;
+import com.br.progweb2.dao.AppRoleDAO;
+import com.br.progweb2.dao.AppUserDAO;
+import com.br.progweb2.entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

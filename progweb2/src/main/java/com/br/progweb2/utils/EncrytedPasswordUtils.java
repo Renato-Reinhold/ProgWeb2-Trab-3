@@ -1,4 +1,4 @@
-package org.o7planning.sbsecurity.utils;
+package com.br.progweb2.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

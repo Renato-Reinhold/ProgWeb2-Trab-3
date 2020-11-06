@@ -1,4 +1,4 @@
-package org.o7planning.sbsecurity.entity;
+package com.br.progweb2.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

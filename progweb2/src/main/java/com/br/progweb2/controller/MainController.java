@@ -1,14 +1,14 @@
-package org.o7planning.sbsecurity.controller;
+package com.br.progweb2.controller;
 
-import java.security.Principal;
-
-import org.o7planning.sbsecurity.utils.WebUtils;
+import com.br.progweb2.utils.WebUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.security.Principal;
 
 @Controller
 public class MainController {
@@ -34,7 +34,7 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(Model model) {
 
-        return "loginPage";
+        return "login";
     }
 
     @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
