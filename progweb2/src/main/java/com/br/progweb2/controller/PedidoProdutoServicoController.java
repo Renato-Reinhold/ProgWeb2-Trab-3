@@ -27,14 +27,14 @@ public class PedidoProdutoServicoController {
 
     @RequestMapping(value = "/vendedores", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody Vendedor vendedor) {
-        vendedores.put(vendedor.getId(), vendedor);
+        vendedores.put(vendedor.getId().toString(), vendedor);
         return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/vendedores/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Vendedor vendedor) {
         vendedores.remove(id);
-        vendedor.setId(id);
+        vendedor.setId(Integer.parseInt(id));
         vendedores.put(id, vendedor);
         return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
     }

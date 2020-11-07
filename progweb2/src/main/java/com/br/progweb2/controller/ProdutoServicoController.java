@@ -25,14 +25,14 @@ public class ProdutoServicoController {
 
     @RequestMapping(value = "/produtos", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody Produto produto) {
-        produtos.put(produto.getId(), produto);
+        produtos.put(produto.getId().toString(), produto);
         return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/produtos/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Produto produto) {
         produtos.remove(id);
-        produto.setId(id);
+        produto.setId(Integer.parseInt(id));
         produtos.put(id, produto);
         return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
     }

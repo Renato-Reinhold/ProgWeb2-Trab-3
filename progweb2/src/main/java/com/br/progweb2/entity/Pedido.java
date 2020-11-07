@@ -1,4 +1,4 @@
-package org.o7planning.sbsecurity.entity;
+package com.br.progweb2.entity;
 
 import java.sql.Date;
 
@@ -25,7 +25,7 @@ public class Pedido {
 	@Column(name = "nome_cliente", length = 200, nullable = false)
 	private String nomeCliente;
 	
-	@Column(name = "descricao", length = 400, nullable = true)
+	@Column(name = "descricao", length = 400)
 	private String descricao;
 	
 	@DateTimeFormat

@@ -1,4 +1,4 @@
-package org.o7planning.sbsecurity.entity;
+package com.br.progweb2.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ public class Produto {
     @Column(name = "nome", length = 200, nullable = false)
 	private String nome;
 	
-    @Column(name = "descricao", length = 400, nullable = true)
+    @Column(name = "descricao", length = 400)
 	private String descricao;
 	
     @Column(name = "preco", nullable = false)
