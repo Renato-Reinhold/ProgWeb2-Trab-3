@@ -13,7 +13,7 @@ public class Produto {
 	@Id
     @GeneratedValue
     @Column(name = "id_produto", nullable = false)
-	private Integer id;
+	private String id;
 	
     @Column(name = "nome", length = 200, nullable = false)
 	private String nome;
@@ -24,11 +24,11 @@ public class Produto {
     @Column(name = "preco", nullable = false)
 	private float preco;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -55,5 +55,14 @@ public class Produto {
 	public void setPreco(float preco) {
 		this.preco = preco;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Produto{" +
+				"id='" + id + '\'' +
+				", nome='" + nome + '\'' +
+				", descricao='" + descricao + '\'' +
+				", preco=" + preco +
+				'}';
+	}
 }

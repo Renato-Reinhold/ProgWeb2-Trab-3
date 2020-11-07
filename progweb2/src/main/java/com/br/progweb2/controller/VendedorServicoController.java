@@ -1,7 +1,6 @@
 package com.br.progweb2.controller;
 
 import com.br.progweb2.entity.Vendedor;
-import com.br.progweb2.entity.Vendedor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +25,14 @@ public class VendedorServicoController {
 
     @RequestMapping(value = "/vendedores", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody Vendedor vendedor) {
-        vendedores.put(vendedor.getId().toString(), vendedor);
+        vendedores.put(vendedor.getId(), vendedor);
         return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/vendedores/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Vendedor vendedor) {
         vendedores.remove(id);
-        vendedor.setId(Integer.parseInt(id));
+        vendedor.setId(id);
         vendedores.put(id, vendedor);
         return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
     }

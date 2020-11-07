@@ -16,7 +16,7 @@ public class Vendedor {
 	@Id
 	@GeneratedValue
 	@Column(name = "id_vendedor", nullable = false)
-	private Integer id;
+	private String id;
 	
 	@Column(name = "nome", length = 200, nullable = false)
 	private String nome;
@@ -27,11 +27,11 @@ public class Vendedor {
 	@Column(name = "senha", length = 128, nullable = false)
 	private String senha;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -58,7 +58,14 @@ public class Vendedor {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Vendedor{" +
+				"id='" + id + '\'' +
+				", nome='" + nome + '\'' +
+				", email='" + email + '\'' +
+				", senha='" + senha + '\'' +
+				'}';
+	}
 }

@@ -1,7 +1,6 @@
 package com.br.progweb2.controller;
 
 import com.br.progweb2.entity.Pedido;
-import com.br.progweb2.entity.Pedido;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +25,14 @@ public class PedidoServicoController {
 
     @RequestMapping(value = "/pedidos", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody Pedido produto) {
-        pedidos.put(produto.getId().toString(), produto);
+        pedidos.put(produto.getId(), produto);
         return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/pedidos/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Pedido produto) {
         pedidos.remove(id);
-        produto.setId(Integer.parseInt(id));
+        produto.setId(id);
         pedidos.put(id, produto);
         return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
     }
