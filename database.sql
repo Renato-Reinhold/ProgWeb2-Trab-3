@@ -31,9 +31,7 @@ create table pedido_produto(
     fk_pedido int not null,
     foreign key (fk_pedido) references pedido(id_pedido),
     fk_produto int not null,
-    foreign key (fk_produto) references produto(id_produto),
-    quantidade int not null,
-    primary key (fk_pedido, fk_produto)
+    foreign key (fk_produto) references produto(id_produto)
 );
 
 insert into vendedor (nome, email, senha)
@@ -67,13 +65,19 @@ values ('Douglas', 3, 'cliente ficou de testar em casa', '2020-09-13 11:55:08', 
 insert into pedido (nome_cliente, fk_vendedor, descricao, data, preco_total)
 values ('José', 4, 'cleinte pediu para avisar quando chegar novos jogos', '2020-11-14 19:23:48', 6099.70);
 
-insert into pedido_produto (fk_pedido, fk_produto, quantidade)
-values (1, 1, 1);
-insert into pedido_produto (fk_pedido, fk_produto, quantidade)
-values (1, 2, 2);
-insert into pedido_produto (fk_pedido, fk_produto, quantidade)
-values (2, 3, 2);
-insert into pedido_produto (fk_pedido, fk_produto, quantidade)
-values (3, 1, 1);
-insert into pedido_produto (fk_pedido, fk_produto, quantidade)
-values (3, 4, 2);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (1, 1);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (1, 2);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (1, 2);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (2, 3);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (2, 3);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (3, 1);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (3, 4);
+insert into pedido_produto (fk_pedido, fk_produto)
+values (3, 4);
