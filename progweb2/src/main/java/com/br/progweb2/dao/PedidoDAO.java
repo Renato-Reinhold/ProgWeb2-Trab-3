@@ -1,5 +1,6 @@
 package com.br.progweb2.dao;
 
+import com.br.progweb2.entity.Pedido;
 import com.br.progweb2.entity.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,23 +12,23 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class ProdutoDAO {
+public class PedidoDAO {
 
     @Autowired
     private EntityManager entityManager;
 
-    private static ProdutoDAO instance;
+    private static PedidoDAO instance;
 
-    public static ProdutoDAO getInstance(){
+    public static PedidoDAO getInstance(){
         if (instance == null){
-            instance = new ProdutoDAO();
+            instance = new PedidoDAO();
         }
         return instance;
     }
 
     public List list(){
         try {
-            String sql = " Select p.id, p.nome, p.descricao, p.preco from " + Produto.class.getName() + " p order by p.nome";
+            String sql = " Select p.id, p.nomeCliente, p.descricao, p.data, p.vendedor from " + Pedido.class.getName() + " p order by p.id";
             Query query = this.entityManager.createQuery(sql, String.class);
             return query.getResultList();
         }catch (Exception e){
@@ -36,18 +37,18 @@ public class ProdutoDAO {
         }
     }
 
-    public Produto get(String id){
+    public Pedido get(String id){
         try {
-            return entityManager.find(Produto.class, id);
+            return entityManager.find(Pedido.class, id);
         }catch (Exception e){
             e.printStackTrace();
             return null;
         }
     }
 
-    public boolean insert(Produto produto){
+    public boolean insert(Pedido pedido){
         try {
-            entityManager.persist(produto);
+            entityManager.persist(pedido);
             return true;
         }catch (Exception e){
             e.printStackTrace();
@@ -55,9 +56,9 @@ public class ProdutoDAO {
         }
     }
 
-    public Produto update(Produto produto){
+    public Pedido update(Pedido pedido){
         try {
-            return entityManager.merge(produto);
+            return entityManager.merge(pedido);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -77,4 +78,3 @@ public class ProdutoDAO {
 
 
 }
-

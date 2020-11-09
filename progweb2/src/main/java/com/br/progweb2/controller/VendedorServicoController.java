@@ -1,17 +1,20 @@
 package com.br.progweb2.controller;
 
+import com.br.progweb2.dao.VendedorDAO;
 import com.br.progweb2.entity.Vendedor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 public class VendedorServicoController {
 
     private static Map<String, Vendedor> vendedores = new HashMap<>();
+    private static final VendedorDAO VENDEDOR_DAO = VendedorDAO.getInstance();
 
     @RequestMapping(value = "/vendedores")
     public ResponseEntity<Object> getProducts() {
@@ -26,6 +29,7 @@ public class VendedorServicoController {
     @RequestMapping(value = "/vendedores", method = RequestMethod.POST)
     public ResponseEntity<Object> createProduct(@RequestBody Vendedor vendedor) {
         vendedores.put(vendedor.getId(), vendedor);
+        VENDEDOR_DAO.insert(vendedor);
         return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
     }
 
@@ -34,17 +38,26 @@ public class VendedorServicoController {
         vendedores.remove(id);
         vendedor.setId(id);
         vendedores.put(id, vendedor);
+        VENDEDOR_DAO.update(vendedor);
         return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/vendedores/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable("id") String id) {
         vendedores.remove(id);
+        VENDEDOR_DAO.delete(id);
         return new ResponseEntity<>("Vendedor deletado com sucesso", HttpStatus.OK);
     }
 
     public String showVendedors(){
         return vendedores.toString();
+    }
+
+    private void populateMap() {
+        List<Vendedor> vendedores = VendedorDAO.getInstance().list();
+        for (Vendedor vendedor : vendedores) {
+            this.vendedores.put(vendedor.getId(), vendedor);
+        }
     }
 
 }
