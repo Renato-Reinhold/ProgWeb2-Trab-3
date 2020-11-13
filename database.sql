@@ -28,6 +28,8 @@ create table produto(
 );
 
 create table pedido_produto(
+	id int auto_increment,
+    primary key (id),
     fk_pedido int not null,
     foreign key (fk_pedido) references pedido(id_pedido),
     fk_produto int not null,
