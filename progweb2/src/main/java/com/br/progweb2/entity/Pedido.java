@@ -1,15 +1,9 @@
 package com.br.progweb2.entity;
 
 import java.sql.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,12 +26,18 @@ public class Pedido {
 	@Column(name = "data", nullable = false)
 	private Date data;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_vendedor", referencedColumnName = "id_vendedor", nullable = false)
 	private Vendedor vendedor;
 	
 	@Column(name = "data", nullable = false)
 	private float precoTotal;
+
+	@ManyToMany
+	@JoinTable(name="pedido_produto", joinColumns=
+			{@JoinColumn(name="id_pedido")}, inverseJoinColumns=
+			{@JoinColumn(name="id_produto")})
+	private List<Produto> produtos;
 
 	public String getId() {
 		return id;

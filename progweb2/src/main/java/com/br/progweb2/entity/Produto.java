@@ -1,10 +1,7 @@
 package com.br.progweb2.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "produto")
@@ -23,6 +20,9 @@ public class Produto {
 	
     @Column(name = "preco", nullable = false)
 	private float preco;
+
+	@ManyToMany(mappedBy="produtos")
+	private List<Pedido> pedidos;
 
 	public String getId() {
 		return id;
