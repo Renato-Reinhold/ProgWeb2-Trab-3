@@ -1,7 +1,7 @@
 create database loja;
 
 create table vendedor(
-    id_vendedor bigint not null auto_increment,
+    id_vendedor int not null auto_increment,
     primary key (id_vendedor),
     nome varchar(200) not null,
     email varchar(100) not null unique,
@@ -34,6 +34,12 @@ create table pedido_produto(
     foreign key (fk_produto) references produto(id_produto)
 );
 
+create table perfis(
+	idVendedor int,
+	perfis int,
+	foreign key (idVendedor) references vendedor(id_vendedor)
+);
+
 insert into vendedor (nome, email, senha) values ('Yuri', 'yuri@gmail.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
 insert into vendedor (nome, email, senha) values ('João', 'joao@gmail.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
 insert into vendedor (nome, email, senha) values ('Monica', 'monica@gmail.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu');
@@ -57,7 +63,9 @@ insert into pedido_produto (fk_pedido, fk_produto) values (3, 1);
 insert into pedido_produto (fk_pedido, fk_produto) values (3, 4);
 insert into pedido_produto (fk_pedido, fk_produto) values (3, 4);
 
-
+insert into perfis values (1,1);
+insert into perfis values (2,1);
+insert into perfis values (2,2);
 
 SELECT * FROM produto;
 SELECT * FROM PEDIDO;
