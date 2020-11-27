@@ -1,6 +1,14 @@
 package com.progweb.programacaoweb.model;
 
+import com.progweb.programacaoweb.ENUM.Perfil;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "vendedor", //
@@ -11,7 +19,7 @@ public class Vendedor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_vendedor", nullable = false)
-	private Long id;
+	private int id;
 
 	@Column(name = "nome", length = 200, nullable = false)
 	private String nome;
@@ -22,11 +30,24 @@ public class Vendedor {
 	@Column(name = "senha", length = 128, nullable = false)
 	private String senha;
 
-	public Long getId() {
+	@JsonIgnore
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "perfis")
+	private Set<Integer> perfis = new HashSet<Integer>();
+
+	public Set<Perfil> getPerfis(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+	public void addPerfil(Perfil perfil){
+		perfis.add(perfil.getCod());
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
